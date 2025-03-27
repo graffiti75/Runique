@@ -1,4 +1,6 @@
 import com.android.build.api.dsl.ApplicationExtension
+import com.cericatto.convention.ExtensionType
+import com.cericatto.convention.configureBuildTypes
 import com.cericatto.convention.configureKotlinAndroid
 import com.cericatto.convention.libs
 import org.gradle.api.Plugin
@@ -21,8 +23,11 @@ class AndroidApplicationConventionPlugin: Plugin<Project> {
 					versionCode = libs.findVersion("projectVersionCode").get().toString().toInt()
 					versionName = libs.findVersion("projectVersionName").get().toString()
 				}
-
 				configureKotlinAndroid(this)
+				configureBuildTypes(
+					commonExtension = this,
+					extensionType = ExtensionType.APPLICATION
+				)
 			}
 		}
 	}
