@@ -15,13 +15,15 @@ class AndroidRoomConventionPlugin: Plugin<Project> {
 			}
 
 			extensions.configure<RoomExtension>() {
+//				schemaDirectory(project.layout.projectDirectory.dir("schemas").asFile.absolutePath)
 				schemaDirectory("$projectDir/schemas")
 			}
 
 			dependencies {
 				"implementation"(libs.findLibrary("room.runtime").get())
 				"implementation"(libs.findLibrary("room.ktx").get())
-				"ksp"(libs.findLibrary("room.ktx").get())
+				"ksp"(libs.findLibrary("room.compiler").get())
+//				"ksp"(libs.findLibrary("room.ktx").get())
 			}
 		}
 	}
